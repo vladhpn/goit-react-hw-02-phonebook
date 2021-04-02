@@ -1,6 +1,6 @@
 import { Component } from "react";
 import shortid from 'shortid';
-
+import styles from '../Form/styles.module.scss';
 
 
 class Form extends Component{
@@ -31,11 +31,12 @@ class Form extends Component{
 
     render(){
         return(<>
-            <h1>Phone book</h1>
-            <form onSubmit={this.handleSubmit}>
-              <label>
-                Name
-                <input
+        
+            <h1 className={styles.title}>Phone book</h1>
+            <form onSubmit={this.handleSubmit} className={styles.form}>
+              <label className={styles.label}>
+                <span className={styles.text}>Name</span>
+                <input className={styles.input}
                   type='text'
                   name='name'
                   value={this.state.name}
@@ -45,9 +46,9 @@ class Form extends Component{
                   required
                 />
               </label>
-              <label>
-                Phone
-                <input
+              <label className={styles.label}>
+                <span className={styles.text}>Phone</span>
+                <input className={styles.input}
                   type='tel'
                   name='number'
                   value={this.state.number}
@@ -57,8 +58,9 @@ class Form extends Component{
                   required
                 />
               </label>
-              <button type='submit'> Add contact</button>
+              <button className={styles.button} type='submit'><span className={styles.content}>Add contact</span> </button>
             </form>
+            
           </>)
     }
 }

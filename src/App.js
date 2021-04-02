@@ -1,7 +1,7 @@
 import { Component } from 'react';
-import Form from './components/Form/Form';
-import ContactList from './components/ContactList/ContactList';
-import Filter from './components/Filter/Filter';
+import Form from './components/Form';
+import ContactList from './components/ContactList';
+import Filter from './components/Filter';
 import shortid from 'shortid';
 import 'modern-normalize/modern-normalize.css';
 
@@ -23,9 +23,15 @@ class App extends Component {
       number,
     };
 
-    this.setState(({ contacts }) => ({
-      contacts: [contact, ...contacts],
-    }));
+    const { contacts } = this.state;
+
+    contacts.find(
+      ({ name }) => name.toLowerCase() === contact.name.toLowerCase(),
+    )
+      ? alert(`${name}`)
+      : this.setState(({ contacts }) => ({
+          contacts: [contact, ...contacts],
+        }));
   };
 
   deleteContact = id => {
