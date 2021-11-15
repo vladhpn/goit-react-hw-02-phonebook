@@ -3,6 +3,7 @@ import Form from './components/Form';
 import ContactList from './components/ContactList';
 import Filter from './components/Filter';
 import shortid from 'shortid';
+import {IContacts} from './interfaces'
 
 // state = {
 //   contacts: [
@@ -14,12 +15,29 @@ import shortid from 'shortid';
 //   filter: '',
 // };
 
-const App = () => {
-  const [contacts, setContacts] = useState([]);
-  const [filter, setFilter] = useState('');
 
-  const addContact = (name, number) => {
-    const newContact = {
+
+// type ContactsType = {
+//   id: string,
+//   name: string,
+//   number: string,
+  
+// }
+
+// interface IContacts {
+//   id: string;
+//   name: string,
+//   number: string
+// }
+
+
+
+const App:React.FC = () => {
+  const [contacts, setContacts] = useState<IContacts[]>([]);
+  const [filter, setFilter] = useState<string>('');
+
+  const addContact = (name:string, number:string) => {
+    const newContact:IContacts = {
       id: shortid.generate(),
       name: name,
       number: number,
@@ -28,13 +46,13 @@ const App = () => {
     setContacts(prev => [newContact, ...contacts]);
   };
 
-  const deleteContact = id => {
+  const deleteContact = (id:string) => {
     setContacts(prev => prev.filter(contact => contact.id !== id));
   };
 
-  const changeFilter = event => {
+  const changeFilter = (event:React.ChangeEvent<HTMLInputElement>) => {
     setFilter(event.target.value);
-    console.log(filter);
+    // console.log(filter);
   };
 
   const getVisibleContact = contacts.filter(contact => {
